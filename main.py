@@ -332,9 +332,9 @@ def u_xakm(x, a, k, m):
 
 
 d = 30
-g = 500
+g = 1000
 p = 30
-times = 50
+times = 60
 table = np.zeros((5, 23))
 table[2, :] = -np.ones(23)*np.inf
 table[3, :] = np.ones(23)*np.inf
