@@ -62,12 +62,18 @@ class EGolden_SWOA():
                 C = 2*r2
                 l = np.random.uniform()*(self.l_max-self.l_min) + self.l_min
                 
-                if p>=0.5:
-                    self.X[i, :] = self.X[i, :]*np.abs(np.sin(R1)) + \
-                                   R2*np.sin(R1)*np.abs(x1*self.gBest_X-x2*self.X[i, :])                   
+                if np.abs(A)>=1:
+                    X_rand = self.X[np.random.randint(low=0, high=self.num_particle, size=self.num_dim), :]
+                    X_rand = np.diag(X_rand).copy()
+                    D = np.abs(C*X_rand - self.X[i, :])
+                    self.X[i, :] = X_rand - A*D                 
                 else:
-                    D = np.abs(C*self.gBest_X - self.X[i, :])
-                    self.X[i, :] = self.gBest_X - A*D
+                    if p<0.5:
+                        D = np.abs(C*self.gBest_X - self.X[i, :])
+                        self.X[i, :] = self.gBest_X - A*D
+                    else:
+                        self.X[i, :] = self.X[i, :]*np.abs(np.sin(R1)) + \
+                                       R2*np.sin(R1)*np.abs(x1*self.gBest_X-x2*self.X[i, :])                           
             
             self.X[self.bound_max < self.X] = self.bound_max[self.bound_max < self.X]
             self.X[self.bound_min > self.X] = self.bound_min[self.bound_min > self.X]
