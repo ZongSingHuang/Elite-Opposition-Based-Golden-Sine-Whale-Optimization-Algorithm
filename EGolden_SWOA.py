@@ -46,18 +46,19 @@ class EGolden_SWOA():
         self.gBest_curve[0] = self.gBest_score.copy()
         
     def opt(self):
+        tao = (np.sqrt(5)-1)/2
+        x1 = -np.pi+(1-tao)
+        x2 = -np.pi+tao*2*np.pi
+        
         while(self._iter<self.max_iter):
-            tao = (np.sqrt(5)-1)/2
-            x1 = -np.pi+(1-tao)
-            x2 = -np.pi+tao*2*np.pi
             a = self.a_max - (self.a_max-self.a_min)*(self._iter/self.max_iter)
-            np.sqrt
+            R1 = 2*np.pi*np.random.uniform()
+            R2 = np.pi*np.random.uniform()
+            
             for i in range(self.num_particle):
                 p = np.random.uniform()
                 r1 = np.random.uniform()
                 r2 = np.random.uniform()
-                R1 = 2*np.pi*np.random.uniform()
-                R2 = np.pi*np.random.uniform()
                 A = 2*a*r1 - a
                 C = 2*r2
                 l = np.random.uniform()*(self.l_max-self.l_min) + self.l_min
