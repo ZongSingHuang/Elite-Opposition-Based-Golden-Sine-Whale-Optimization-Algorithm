@@ -34,13 +34,8 @@ class EGolden_SWOA():
         self.gBest_score = np.inf
         self.gBest_curve = np.zeros(self.max_iter)
         self.X = np.random.uniform(size=[self.num_particle, self.num_dim])*(self.x_max-self.x_min) + self.x_min
-
-        new_X = self.obl()
-        self.X = np.concatenate((new_X, self.X), axis=0)        
+     
         score = self.fit_func(self.X)
-        top_k = score.argsort()[:self.num_particle]
-        score = score[top_k].copy()
-        self.X = self.X[top_k].copy()
         self.gBest_score = score.min().copy()
         self.gBest_X = self.X[score.argmin()].copy()
         self.gBest_curve[0] = self.gBest_score.copy()
@@ -55,13 +50,20 @@ class EGolden_SWOA():
             R1 = 2*np.pi*np.random.uniform()
             R2 = np.pi*np.random.uniform()
             
-            for i in range(self.num_particle):
+            new_X = self.obl()
+            self.X = np.concatenate((new_X, self.X), axis=0)        
+            score = self.fit_func(self.X)
+            top_k = score.argsort()[:self.num_particle]
+            score = score[top_k].copy()
+            self.X = self.X[top_k].copy()           
+            
+            for i in range(self.num_particle):                
                 p = np.random.uniform()
                 r1 = np.random.uniform()
                 r2 = np.random.uniform()
                 A = 2*a*r1 - a
                 C = 2*r2
-                l = np.random.uniform()*(self.l_max-self.l_min) + self.l_min
+                l = np.random.uniform()*(self.l_max-self.l_min) + self.l_min            
                 
                 if np.abs(A)>=1:
                     X_rand = self.X[np.random.randint(low=0, high=self.num_particle, size=self.num_dim), :]
@@ -78,13 +80,8 @@ class EGolden_SWOA():
             
             self.X[self.bound_max < self.X] = self.bound_max[self.bound_max < self.X]
             self.X[self.bound_min > self.X] = self.bound_min[self.bound_min > self.X]
-            
-            new_X = self.obl()
-            self.X = np.concatenate((new_X, self.X), axis=0)        
+                   
             score = self.fit_func(self.X)
-            top_k = score.argsort()[:self.num_particle]
-            score = score[top_k].copy()
-            self.X = self.X[top_k].copy()
             if np.min(score) < self.gBest_score:
                 self.gBest_X = self.X[score.argmin()].copy()
                 self.gBest_score = score.min().copy()
