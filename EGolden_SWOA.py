@@ -89,7 +89,7 @@ class EGolden_SWOA():
         plt.show()
 
     def obl(self):
-        k = np.random.uniform(size=[self.num_particle, self.num_dim])
+        k = np.random.uniform()
         alpha = self.X.min(axis=0)
         beta = self.X.max(axis=0)
         new_X = k*(alpha+beta)-self.X
