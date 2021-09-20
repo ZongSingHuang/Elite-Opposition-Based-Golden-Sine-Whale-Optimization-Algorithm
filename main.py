@@ -580,7 +580,7 @@ loss_curves.columns = ['Sphere', 'Rastrigin', 'Ackley', 'Griewank', 'Schwefel P2
                        'Alpine', 'Michalewicz', 'Exponential', 'Schaffer', 'Bent Cigar',
                        'Bohachevsky 1', 'Elliptic', 'Drop Wave', 'Cosine Mixture', 'Ellipsoidal',
                        'Levy and Montalvo 1']
-loss_curves.to_csv('loss_curves(WOA).csv')
+loss_curves.to_csv('loss_curves(EGolden_SWOA).csv')
 
 table.loc[['avg', 'time']] = table.loc[['avg', 'time']] / run_times
 table.loc['worst'] = F_table.max(axis=0)
@@ -594,4 +594,4 @@ table.columns = ['Sphere', 'Rastrigin', 'Ackley', 'Griewank', 'Schwefel P2.22',
                  'Alpine', 'Michalewicz', 'Exponential', 'Schaffer', 'Bent Cigar',
                  'Bohachevsky 1', 'Elliptic', 'Drop Wave', 'Cosine Mixture', 'Ellipsoidal',
                  'Levy and Montalvo 1']
-table.to_csv('table(WOA).csv')
+table.to_csv('table(EGolden_SWOA).csv')
