@@ -1,7 +1,7 @@
 # Elite-Opposition-Based-Golden-Sine-Whale-Optimization-Algorithm
-XIAO Zi-ya,LIU Sheng. Study on Elite Opposition-Based Golden-Sine Whale Optimization Algorithm and its Application of Project Optimization[J]. Acta Electronica Sinica, 2019, 47(10): 2177-2186.
+肖子雅, 刘升. 精英反向黄金正弦鲸鱼算法及其工程优化研究[J]. 电子学报, 2019, 47(10): 2177-2186.
 
-http://www.ejournal.org.cn/EN/abstract/abstract11643.shtml
+https://doi.org/10.3969/j.issn.0372-2112.2019.10.020
 
 1. 重新優化了測試腳本
 
